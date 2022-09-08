@@ -3,6 +3,15 @@ package ru.netoligy.java9radioman;
 public class Radio {
     protected int currentNumRadiostation;
     protected int currentVolume;
+    protected int maxStation;
+
+    public Radio() {
+        maxStation = 9;
+    }
+
+    public Radio(int stationsCount) {
+        maxStation = stationsCount -1;
+    }
 
     public int getCurrentNumRadiostation() {
 
@@ -10,17 +19,17 @@ public class Radio {
     }
 
     public void setCurrentNumRadiostation(int currentNumRadiostation) {
-        if (currentNumRadiostation > 9) {
+        if (currentNumRadiostation < 0) {
             return;
         }
-        if (currentNumRadiostation < 0) {
+        if (currentNumRadiostation > maxStation) {
             return;
         }
         this.currentNumRadiostation = currentNumRadiostation;
     }
 
     public void nextNumRadiostation() {
-        if (currentNumRadiostation < 9) {
+        if (currentNumRadiostation < maxStation) {
             currentNumRadiostation++;
         } else {
             currentNumRadiostation = 0;
@@ -32,8 +41,9 @@ public class Radio {
         if (currentNumRadiostation > 0) {
             currentNumRadiostation--;
         } else {
-            currentNumRadiostation = 9;
+            currentNumRadiostation = maxStation;
         }
+
     }
 
     //громкость
@@ -45,22 +55,22 @@ public class Radio {
         if (currentVolume < 0) {
             return;
         }
-        if (currentVolume > 10) {
+        if (currentVolume > 100) {
             return;
         }
         this.currentVolume = currentVolume;
     }
 
     public void increaseVolume() {
-        if (currentVolume < 10) {
+        if (currentVolume < 100) {
             currentVolume = currentVolume + 1;
         }
         return;
     }
 
     public void maxVolume(int maxVolume) {
-        if (maxVolume >= 10) {
-            currentVolume = 10;
+        if (maxVolume >= 100) {
+            currentVolume = 100;
         }
         return;
     }
@@ -78,5 +88,5 @@ public class Radio {
         }
         return;
     }
-}
 
+}
